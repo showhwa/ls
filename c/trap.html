@@ -9,7 +9,7 @@
     <meta name="keywords" content="Linux,Command,命令大全,Linux命令手册,trap,捕捉信号和其他事件并执行命令。">
     <title>trap 命令，Linux trap 命令详解：捕捉信号和其他事件并执行命令。 -  Linux 命令搜索引擎</title>
     <link rel="shortcut icon" href="../img/favicon.ico">
-    <link rel="stylesheet" type="text/css" href="../css/index.css?v=1677724094740">
+    <link rel="stylesheet" type="text/css" href="../css/index.css?v=1749797903059">
     <script src="../js/dark-mode.min.js"></script>
     <script type="module" src="../js/github-corners.js"></script>
 </head>
@@ -46,7 +46,25 @@
 </span>
 
 
-<script>const __TEMPLATE__ = document.createElement('template');
+<dark-mode style="position: fixed; top: 8px; left: 10px; z-index: 999;;display: none;" dark="Dark" light="Light"></dark-mode><script>const t=document;const e="_dark_mode_theme_";const s="permanent";const o="colorschemechange";const i="permanentcolorscheme";const h="light";const r="dark";const n=(t,e,s=e)=>{Object.defineProperty(t,s,{enumerable:true,get(){const t=this.getAttribute(e);return t===null?"":t},set(t){this.setAttribute(e,t)}})};const c=(t,e,s=e)=>{Object.defineProperty(t,s,{enumerable:true,get(){return this.hasAttribute(e)},set(t){if(t){this.setAttribute(e,"")}else{this.removeAttribute(e)}}})};class a extends HTMLElement{static get observedAttributes(){return["mode",h,r,s]}LOCAL_NANE=e;constructor(){super();this.t()}connectedCallback(){n(this,"mode");n(this,r);n(this,h);c(this,s);const a=localStorage.getItem(e);if(a&&[h,r].includes(a)){this.mode=a;this.permanent=true}if(this.permanent&&!a){localStorage.setItem(e,this.mode)}const l=[h,r].includes(a);if(this.permanent&&a){this.o()}else{if(window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches){this.mode=r;this.o()}if(window.matchMedia&&window.matchMedia("(prefers-color-scheme: light)").matches){this.mode=h;this.o()}}if(!this.permanent&&!l){window.matchMedia("(prefers-color-scheme: light)").onchange=t=>{this.mode=t.matches?h:r;this.o()};window.matchMedia("(prefers-color-scheme: dark)").onchange=t=>{this.mode=t.matches?r:h;this.o()}}const d=new MutationObserver(((s,h)=>{this.mode=t.documentElement.dataset.colorMode;if(this.permanent&&l){localStorage.setItem(e,this.mode);this.i(i,{permanent:this.permanent})}this.h();this.i(o,{colorScheme:this.mode})}));d.observe(t.documentElement,{attributes:true});this.i(o,{colorScheme:this.mode});this.h()}attributeChangedCallback(t,s,o){if(t==="mode"&&s!==o&&[h,r].includes(o)){const t=localStorage.getItem(e);if(this.mode===t){this.mode=o;this.h();this.o()}else if(this.mode&&this.mode!==t){this.h();this.o()}}else if((t===h||t===r)&&s!==o){this.h()}if(t==="permanent"&&typeof this.permanent==="boolean"){this.permanent?localStorage.setItem(e,this.mode):localStorage.removeItem(e)}}o(){t.documentElement.setAttribute("data-color-mode",this.mode)}h(){this.icon.textContent=this.mode===h?"🌒":"🌞";this.text.textContent=this.mode===h?this.getAttribute(r):this.getAttribute(h)}t(){var s=this.attachShadow({mode:"open"});this.label=t.createElement("span");this.label.setAttribute("class","wrapper");this.label.onclick=()=>{this.mode=this.mode===h?r:h;if(this.permanent){localStorage.setItem(e,this.mode)}this.o();this.h()};s.appendChild(this.label);this.icon=t.createElement("span");this.label.appendChild(this.icon);this.text=t.createElement("span");this.label.appendChild(this.text);const o=`
+[data-color-mode*='dark'], [data-color-mode*='dark'] body {
+  color-scheme: dark;
+  --color-theme-bg: #0d1117;
+  --color-theme-text: #c9d1d9;
+  background-color: var(--color-theme-bg);
+  color: var(--color-theme-text);
+}
+
+[data-color-mode*='light'], [data-color-mode*='light'] body {
+  color-scheme: light;
+  --color-theme-bg: #fff;
+  --color-theme-text: #24292f;
+  background-color: var(--color-theme-bg);
+  color: var(--color-theme-text);
+}`;const i="_dark_mode_style_";const n=t.getElementById(i);if(!n){var c=t.createElement("style");c.id=i;c.textContent=o;t.head.appendChild(c)}var a=t.createElement("style");a.textContent=`
+    .wrapper { cursor: pointer; user-select: none; position: relative; }
+    .wrapper > span + span { margin-left: .4rem; }
+    `;s.appendChild(a)}i(t,e){this.dispatchEvent(new CustomEvent(t,{bubbles:true,composed:true,detail:e}))}}customElements.define("dark-mode",a);</script><script>const __TEMPLATE__ = document.createElement('template');
 __TEMPLATE__.innerHTML = `
 <style>
 
@@ -112,7 +130,7 @@ class MarkdownStyle extends HTMLElement {
         }
     }
 }
-customElements.define('markdown-style', MarkdownStyle);</script><markdown-style style="max-width: 960px; margin: 0 auto 60px auto; padding: 8px" class="markdown-style">
+customElements.define('markdown-style', MarkdownStyle);</script><markdown-style style="max-width: 960px; margin: 0 auto 60px auto; padding: 8px;" class="markdown-style">
 <h1 id="trap"><a class="anchor" aria-hidden="true" tabindex="-1" href="#trap"><span class="octicon octicon-link"></span></a>trap</h1>
 <p>捕捉信号和其他事件并执行命令。</p>
 <h2 id="概要"><a class="anchor" aria-hidden="true" tabindex="-1" href="#概要"><span class="octicon octicon-link"></span></a>概要</h2>
@@ -139,52 +157,52 @@ customElements.define('markdown-style', MarkdownStyle);</script><markdown-style 
 <p>信号是一种进程间通信机制，它给应用程序提供一种异步的软件中断，使应用程序有机会接受其他程序活终端发送的命令(即信号)。应用程序收到信号后，有三种处理方式：忽略，默认，或捕捉。进程收到一个信号后，会检查对该信号的处理机制。如果是SIG_IGN，就忽略该信号；如果是SIG_DFT，则会采用系统默认的处理动作，通常是终止进程或忽略该信号；如果给该信号指定了一个处理函数(捕捉)，则会中断当前进程正在执行的任务，转而去执行该信号的处理函数，返回后再继续执行被中断的任务。</p>
 <p>在有些情况下，我们不希望自己的shell脚本在运行时刻被中断，比如说我们写得shell脚本设为某一用户的默认shell，使这一用户进入系统后只能作某一项工作，如数据库备份， 我们可不希望用户使用 Ctrl+C 等方法进入到shell状态做我们不希望做的事情。这便用到了信号处理。</p>
 <p>以下是一些你可能会遇到的常见信号：</p>
-
-  
-    
-      
-      
-      
-    
-  
-  
-    
-      
-      
-      
-    
-    
-      
-      
-      
-    
-    
-      
-      
-      
-    
-    
-      
-      
-      
-    
-    
-      
-      
-      
-    
-    
-      
-      
-      
-    
-    
-      
-      
-      
-    
-  
-<table><thead><tr><th>信号名称</th><th>信号数</th><th>描述</th></tr></thead><tbody><tr><td>SIGHUP</td><td>1</td><td>本信号在用户终端连接（正常或非正常）结束时发出，通常是在终端的控制进程结束时，通知同一session内的各个作业，这时它们与控制终端不再关联。登录Linux时，系统会分配给登录用户一个终端(Session)。在这个终端运行的所有程序，包括前台进程组和后台进程组，一般都属于这个Session。当用户退出Linux登录时，前台进程组和后台有对终端输出的进程将会收到SIGHUP信号。这个信号的默认操作为终止进程，因此前台进程组和后台有终端输出的进程就会中止。对于与终端脱离关系的守护进程，这个信号用于通知它重新读取配置文件。</td></tr><tr><td>SIGINT</td><td>2</td><td>程序终止(interrupt)信号，在用户键入 Ctrl+C 时发出。</td></tr><tr><td>SIGQUIT</td><td>3</td><td>和SIGINT类似，但由QUIT字符(通常是Ctrl /)来控制。进程在因收到SIGQUIT退出时会产生core文件，在这个意义上类似于一个程序错误信号。</td></tr><tr><td>SIGFPE</td><td>8</td><td>在发生致命的算术运算错误时发出。不仅包括浮点运算错误，还包括溢出及除数为0等其它所有的算术错误。</td></tr><tr><td>SIGKILL</td><td>9</td><td>用来立即结束程序的运行。本信号不能被阻塞，处理和忽略。</td></tr><tr><td>SIGALRM</td><td>14</td><td>时钟定时信号，计算的是实际的时间或时钟时间。alarm 函数使用该信号。</td></tr><tr><td>SIGTERM</td><td>15</td><td>程序结束(terminate)信号, 与SIGKILL不同的是该信号可以被阻塞和处理. 通常用来要求程序自己正常退出；kill 命令缺省产生这个信号。</td></tr></tbody></table>
+<table>
+  <thead>
+    <tr>
+      <th>信号名称</th>
+      <th>信号数</th>
+      <th>描述</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>SIGHUP</td>
+      <td>1</td>
+      <td>本信号在用户终端连接（正常或非正常）结束时发出，通常是在终端的控制进程结束时，通知同一session内的各个作业，这时它们与控制终端不再关联。登录Linux时，系统会分配给登录用户一个终端(Session)。在这个终端运行的所有程序，包括前台进程组和后台进程组，一般都属于这个Session。当用户退出Linux登录时，前台进程组和后台有对终端输出的进程将会收到SIGHUP信号。这个信号的默认操作为终止进程，因此前台进程组和后台有终端输出的进程就会中止。对于与终端脱离关系的守护进程，这个信号用于通知它重新读取配置文件。</td>
+    </tr>
+    <tr>
+      <td>SIGINT</td>
+      <td>2</td>
+      <td>程序终止(interrupt)信号，在用户键入 Ctrl+C 时发出。</td>
+    </tr>
+    <tr>
+      <td>SIGQUIT</td>
+      <td>3</td>
+      <td>和SIGINT类似，但由QUIT字符(通常是Ctrl+\)来控制。进程在因收到SIGQUIT退出时会产生core文件，在这个意义上类似于一个程序错误信号。</td>
+    </tr>
+    <tr>
+      <td>SIGFPE</td>
+      <td>8</td>
+      <td>在发生致命的算术运算错误时发出。不仅包括浮点运算错误，还包括溢出及除数为0等其它所有的算术错误。</td>
+    </tr>
+    <tr>
+      <td>SIGKILL</td>
+      <td>9</td>
+      <td>用来立即结束程序的运行。本信号不能被阻塞，处理和忽略。</td>
+    </tr>
+    <tr>
+      <td>SIGALRM</td>
+      <td>14</td>
+      <td>时钟定时信号，计算的是实际的时间或时钟时间。alarm 函数使用该信号。</td>
+    </tr>
+    <tr>
+      <td>SIGTERM</td>
+      <td>15</td>
+      <td>程序结束(terminate)信号, 与SIGKILL不同的是该信号可以被阻塞和处理. 通常用来要求程序自己正常退出；kill 命令缺省产生这个信号。</td>
+    </tr>
+  </tbody>
+</table>
 <h2 id="例子"><a class="anchor" aria-hidden="true" tabindex="-1" href="#例子"><span class="octicon octicon-link"></span></a>例子</h2>
 <p>当shell收到 <code>HUP INT PIPE QUIT TERM</code> 这几个命令时，当前执行的程序会执行 <code>exit 1</code>。</p>
 <pre class="language-shell"><code class="language-shell code-highlight"><span class="code-line line-number" line="1"><span class="token punctuation">[</span>root@pc root<span class="token punctuation">]</span>$ <span class="token builtin class-name">trap</span> <span class="token string">"exit 1"</span> HUP INT PIPE QUIT <span class="token environment constant">TERM</span>
@@ -289,16 +307,23 @@ function copied(target, str) {
   <a href="https://github.com/roachsinai/krunner-linuxcommands" target="_blank">Krunner</a> |
   <a href="http://jaywcjlove.gitee.io/linux-command/" target="_blank">开源中国Web版</a>
   <br />
+  <a href="https://jaywcjlove.github.io/#/sponsor" target="_blank">打赏捐赠</a> |
   <a href="https://github.com/jaywcjlove/linux-command" target="_blank">Github</a> |
   <a href="https://jaywcjlove.github.io/linux-command/" target="_blank">短地址：https://git.io/linux</a>
-  <br />
-  收藏本站请使用 Ctrl+D 或者Command+d
-  <br /> 共搜集到
-  <span id="commands_info">
-    588
-  </span> 个Linux命令，超过 <a href="../contributors.html">50+</a> 贡献者
+  <div>
+    收藏本站请使用 Ctrl+D 或者Command+d
+    <br />
+    共搜集到
+    <span id="commands_info">
+      611
+    </span> 个Linux命令，超过 <a href="../contributors.html">50+</a> 贡献者
+  </div>
+  <div>
+    <a target="_blank" href="../contributors.html#镜像网站">镜像网站</a>列表，
+    <a href="https://github.com/jaywcjlove/linux-command/issues/649" target="_blank">推荐</a>自己的镜像网站
+  </div>
 </div>
-<script type="text/javascript" src="../js/dt.js?v=1677724094741"></script>
-<script type="text/javascript" src="../js/index.js?v=1677724094741"></script>
+<script type="text/javascript" src="../js/dt.js?v=1749797903059"></script>
+<script type="text/javascript" src="../js/index.js?v=1749797903059"></script>
 </body>
 </html>
